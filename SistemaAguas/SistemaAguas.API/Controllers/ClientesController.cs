@@ -40,6 +40,7 @@ namespace SistemaAguas.API.Controllers
         [HttpPost]
         public IHttpActionResult Post([FromBody] Cliente novoCliente)
         {
+            novoCliente.Ativo = true;
             db.Clientes.InsertOnSubmit(novoCliente);
             db.SubmitChanges();
 
@@ -65,9 +66,16 @@ namespace SistemaAguas.API.Controllers
             cliente.Morada = clienteAtualizado.Morada;
             cliente.Ativo = clienteAtualizado.Ativo;
 
-            db.SubmitChanges();
+            try
+            {
+                db.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                return  ResponseMessage(Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message));
+            }
 
-            return ResponseMessage(Request.CreateResponse(HttpStatusCode.Created, cliente));
+            return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, cliente));
         }
 
         // DELETE api/clientes/5
@@ -91,8 +99,15 @@ namespace SistemaAguas.API.Controllers
                     "O cliente não pode ser apagado porque existem consumos ou faturas associadas"));
             }
 
-            db.Clientes.DeleteOnSubmit(cliente);
-            db.SubmitChanges();
+            try
+            {
+                db.Clientes.DeleteOnSubmit(cliente);
+                db.SubmitChanges();
+            }
+            catch(Exception e)
+            {
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.InternalServerError, e.Message));
+            }
 
             return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK));
         }

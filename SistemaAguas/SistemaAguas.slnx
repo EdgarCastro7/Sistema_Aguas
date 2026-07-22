@@ -1,4 +1,4 @@
 <Solution>
-  <Project Path="SistemaAguas.API/SistemaAguas.API.csproj" />
-  <Project Path="SistemaAguas.WPF/SistemaAguas.WPF.csproj" />
+  <Project Path="SistemaAguas.API/SistemaAguas.API.csproj" Id="6078475b-be4f-4b5d-ac1c-d69e04e91502" />
+  <Project Path="SistemaAguas.WPF/SistemaAguas.WPF.csproj" Id="bf203009-02a5-4daa-9570-c71a1a5da9ca" />
 </Solution>
