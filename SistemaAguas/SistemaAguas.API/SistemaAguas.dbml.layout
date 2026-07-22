@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.75" name="SistemaAguas">
+  <DataContextMoniker Name="/SistemaAguasDataContext" />
+  <nestedChildShapes>
+    <classShape Id="3cb2005a-7a95-4e7b-a581-4bd81085ef12" absoluteBounds="8.5, 3.75, 2, 1.9631982421875003">
+      <DataClassMoniker Name="/SistemaAguasDataContext/Consumo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="266adf3f-0b0b-4661-af8e-242f8d458501" absoluteBounds="8.515, 4.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f59e46ea-7a92-4576-9a14-1745bcb13a3c" absoluteBounds="1.125, 3.375, 2, 2.5401025390625005">
+      <DataClassMoniker Name="/SistemaAguasDataContext/Cliente" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b82f11ac-bb19-44dc-a97d-1f2568f7869f" absoluteBounds="1.1400000000000001, 3.835, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4ded4e7f-8831-4528-a0b7-ab0fc03f4c5b" absoluteBounds="5, 6.75, 2, 1.7708968098958329">
+      <DataClassMoniker Name="/SistemaAguasDataContext/Contador" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6439ebc4-d1da-4c23-b2ec-42ac1889be1f" absoluteBounds="5.0150000000000006, 7.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="37e6d2c1-f1ea-46f8-82fb-13053d9eba95" absoluteBounds="5.125, 0.625, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/SistemaAguasDataContext/Fatura" />
+      <nestedChildShapes>
+        <elementListCompartment Id="613537d3-a2ea-40bb-97a8-203dc98d17d4" absoluteBounds="5.1400000000000006, 1.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7 : 7.630451462051); (9.5 : 7.630451462051); (9.5 : 5.7131982421875)]" fixedFrom="Caller" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SistemaAguasDataContext/Contador/Contador_Consumo" />
+      <nodes>
+        <classShapeMoniker Id="4ded4e7f-8831-4528-a0b7-ab0fc03f4c5b" />
+        <classShapeMoniker Id="3cb2005a-7a95-4e7b-a581-4bd81085ef12" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.125 : 5.9151025390625); (2.125 : 7.63544840494792); (5 : 7.63544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SistemaAguasDataContext/Cliente/Cliente_Contador" />
+      <nodes>
+        <classShapeMoniker Id="f59e46ea-7a92-4576-9a14-1745bcb13a3c" />
+        <classShapeMoniker Id="4ded4e7f-8831-4528-a0b7-ab0fc03f4c5b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.1104859002828 : 3.375); (2.1104859002828 : 1.79890055338542); (5.125 : 1.79890055338542)]" fixedFrom="Caller" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SistemaAguasDataContext/Cliente/Cliente_Fatura" />
+      <nodes>
+        <classShapeMoniker Id="f59e46ea-7a92-4576-9a14-1745bcb13a3c" />
+        <classShapeMoniker Id="37e6d2c1-f1ea-46f8-82fb-13053d9eba95" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(9.5 : 3.75); (9.5 : 1.79890055338542); (7.125 : 1.79890055338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SistemaAguasDataContext/Consumo/Consumo_Fatura" />
+      <nodes>
+        <classShapeMoniker Id="3cb2005a-7a95-4e7b-a581-4bd81085ef12" />
+        <classShapeMoniker Id="37e6d2c1-f1ea-46f8-82fb-13053d9eba95" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.97823765028451 : 6.75); (5.97823765028451 : 2.97280110677083)]" fixedFrom="Caller" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SistemaAguasDataContext/Contador/Contador_Fatura" />
+      <nodes>
+        <classShapeMoniker Id="4ded4e7f-8831-4528-a0b7-ab0fc03f4c5b" />
+        <classShapeMoniker Id="37e6d2c1-f1ea-46f8-82fb-13053d9eba95" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

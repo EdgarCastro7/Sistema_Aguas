@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SistemaAguas.API/SistemaAguas.API.csproj" />
+  <Project Path="SistemaAguas.WPF/SistemaAguas.WPF.csproj" />
+</Solution>
