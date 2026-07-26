@@ -41,6 +41,7 @@ namespace SistemaAguas.API.Controllers
         public IHttpActionResult Post([FromBody] Cliente novoCliente)
         {
             novoCliente.Ativo = true;
+            novoCliente.Registo = DateTime.Now;
             db.Clientes.InsertOnSubmit(novoCliente);
             db.SubmitChanges();
 
@@ -65,6 +66,7 @@ namespace SistemaAguas.API.Controllers
             cliente.Contacto = clienteAtualizado.Contacto;
             cliente.Morada = clienteAtualizado.Morada;
             cliente.Ativo = clienteAtualizado.Ativo;
+            cliente.Registo = clienteAtualizado.Registo;
 
             try
             {

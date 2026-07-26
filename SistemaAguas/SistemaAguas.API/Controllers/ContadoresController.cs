@@ -47,6 +47,7 @@ namespace SistemaAguas.API.Controllers
             }
 
             contador.Ativo = true;
+            contador.DataInstalacao = DateTime.Now;
 
             db.Contadors.InsertOnSubmit(contador);
 

@@ -159,6 +159,7 @@
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\ConsumosController.cs" />
     <Compile Include="Controllers\ContadoresController.cs" />
+    <Compile Include="Controllers\FaturasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -241,9 +242,6 @@
       <LastGenOutput>SistemaAguas.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <None Include="SistemaAguas.dbml.layout">
-      <DependentUpon>SistemaAguas.dbml</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -322,6 +320,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SistemaAguas.dbml.layout">
+      <DependentUpon>SistemaAguas.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

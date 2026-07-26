@@ -63,6 +63,7 @@ namespace SistemaAguas.API.Controllers
                 return ResponseMessage(Request.CreateResponse(HttpStatusCode.BadRequest, "Este cliente encontra-se inativo"));
             }
 
+
             var leituraDuplicada = db.Consumos.Any(c => c.ContadorId == consumo.ContadorId && c.DataLeitura == consumo.DataLeitura);
 
             if (leituraDuplicada)
@@ -77,7 +78,7 @@ namespace SistemaAguas.API.Controllers
 
             if (ultimoConsumo == null)
             {
-                consumo.LeituraAnterior = 0;
+                consumo.LeituraAnterior = 100;
             }
             else
             {
@@ -134,6 +135,19 @@ namespace SistemaAguas.API.Controllers
                 cs.LeituraAnterior = consumoAnterior.LeituraAtual;
                 cs.ValorConsumido = cs.LeituraAtual - cs.LeituraAnterior;
                 consumoAnterior = cs;
+            }
+
+            var fatura = db.Faturas.SingleOrDefault(f => f.ConsumoId == consumo.Id && !f.Anulado);
+
+            if(fatura != null)
+            {
+                if (fatura.Pago)
+                {
+                    return ResponseMessage(Request.CreateResponse(HttpStatusCode.NotAcceptable,
+                        "Não é possível corrigir uma leitura de uma fatura já paga."));
+                }
+                fatura.Anulado = true;
+                db.SubmitChanges();
             }
 
             try

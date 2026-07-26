@@ -30,18 +30,18 @@ namespace SistemaAguas.API
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertConsumo(Consumo instance);
-    partial void UpdateConsumo(Consumo instance);
-    partial void DeleteConsumo(Consumo instance);
     partial void InsertCliente(Cliente instance);
     partial void UpdateCliente(Cliente instance);
     partial void DeleteCliente(Cliente instance);
-    partial void InsertContador(Contador instance);
-    partial void UpdateContador(Contador instance);
-    partial void DeleteContador(Contador instance);
     partial void InsertFatura(Fatura instance);
     partial void UpdateFatura(Fatura instance);
     partial void DeleteFatura(Fatura instance);
+    partial void InsertConsumo(Consumo instance);
+    partial void UpdateConsumo(Consumo instance);
+    partial void DeleteConsumo(Consumo instance);
+    partial void InsertContador(Contador instance);
+    partial void UpdateContador(Contador instance);
+    partial void DeleteContador(Contador instance);
     #endregion
 		
 		public SistemaAguasDataContext(string connection) : 
@@ -68,27 +68,11 @@ namespace SistemaAguas.API
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Consumo> Consumos
-		{
-			get
-			{
-				return this.GetTable<Consumo>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Cliente> Clientes
 		{
 			get
 			{
 				return this.GetTable<Cliente>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Contador> Contadors
-		{
-			get
-			{
-				return this.GetTable<Contador>();
 			}
 		}
 		
@@ -99,256 +83,21 @@ namespace SistemaAguas.API
 				return this.GetTable<Fatura>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Consumo")]
-	public partial class Consumo : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private System.DateTime _DataLeitura;
-		
-		private double _ValorConsumido;
-		
-		private double _LeituraAtual;
-		
-		private double _LeituraAnterior;
-		
-		private int _ContadorId;
-		
-		private EntitySet<Fatura> _Faturas;
-		
-		private EntityRef<Contador> _Contador;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnDataLeituraChanging(System.DateTime value);
-    partial void OnDataLeituraChanged();
-    partial void OnValorConsumidoChanging(double value);
-    partial void OnValorConsumidoChanged();
-    partial void OnLeituraAtualChanging(double value);
-    partial void OnLeituraAtualChanged();
-    partial void OnLeituraAnteriorChanging(double value);
-    partial void OnLeituraAnteriorChanged();
-    partial void OnContadorIdChanging(int value);
-    partial void OnContadorIdChanged();
-    #endregion
-		
-		public Consumo()
-		{
-			this._Faturas = new EntitySet<Fatura>(new Action<Fatura>(this.attach_Faturas), new Action<Fatura>(this.detach_Faturas));
-			this._Contador = default(EntityRef<Contador>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Id
+		public System.Data.Linq.Table<Consumo> Consumos
 		{
 			get
 			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
+				return this.GetTable<Consumo>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataLeitura", DbType="DateTime NOT NULL")]
-		public System.DateTime DataLeitura
+		public System.Data.Linq.Table<Contador> Contadors
 		{
 			get
 			{
-				return this._DataLeitura;
+				return this.GetTable<Contador>();
 			}
-			set
-			{
-				if ((this._DataLeitura != value))
-				{
-					this.OnDataLeituraChanging(value);
-					this.SendPropertyChanging();
-					this._DataLeitura = value;
-					this.SendPropertyChanged("DataLeitura");
-					this.OnDataLeituraChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorConsumido", DbType="Float NOT NULL")]
-		public double ValorConsumido
-		{
-			get
-			{
-				return this._ValorConsumido;
-			}
-			set
-			{
-				if ((this._ValorConsumido != value))
-				{
-					this.OnValorConsumidoChanging(value);
-					this.SendPropertyChanging();
-					this._ValorConsumido = value;
-					this.SendPropertyChanged("ValorConsumido");
-					this.OnValorConsumidoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LeituraAtual", DbType="Float NOT NULL")]
-		public double LeituraAtual
-		{
-			get
-			{
-				return this._LeituraAtual;
-			}
-			set
-			{
-				if ((this._LeituraAtual != value))
-				{
-					this.OnLeituraAtualChanging(value);
-					this.SendPropertyChanging();
-					this._LeituraAtual = value;
-					this.SendPropertyChanged("LeituraAtual");
-					this.OnLeituraAtualChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LeituraAnterior", DbType="Float NOT NULL")]
-		public double LeituraAnterior
-		{
-			get
-			{
-				return this._LeituraAnterior;
-			}
-			set
-			{
-				if ((this._LeituraAnterior != value))
-				{
-					this.OnLeituraAnteriorChanging(value);
-					this.SendPropertyChanging();
-					this._LeituraAnterior = value;
-					this.SendPropertyChanged("LeituraAnterior");
-					this.OnLeituraAnteriorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContadorId", DbType="Int NOT NULL")]
-		public int ContadorId
-		{
-			get
-			{
-				return this._ContadorId;
-			}
-			set
-			{
-				if ((this._ContadorId != value))
-				{
-					if (this._Contador.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnContadorIdChanging(value);
-					this.SendPropertyChanging();
-					this._ContadorId = value;
-					this.SendPropertyChanged("ContadorId");
-					this.OnContadorIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Consumo_Fatura", Storage="_Faturas", ThisKey="Id", OtherKey="ConsumoId")]
-		public EntitySet<Fatura> Faturas
-		{
-			get
-			{
-				return this._Faturas;
-			}
-			set
-			{
-				this._Faturas.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Contador_Consumo", Storage="_Contador", ThisKey="ContadorId", OtherKey="Id", IsForeignKey=true)]
-		public Contador Contador
-		{
-			get
-			{
-				return this._Contador.Entity;
-			}
-			set
-			{
-				Contador previousValue = this._Contador.Entity;
-				if (((previousValue != value) 
-							|| (this._Contador.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Contador.Entity = null;
-						previousValue.Consumos.Remove(this);
-					}
-					this._Contador.Entity = value;
-					if ((value != null))
-					{
-						value.Consumos.Add(this);
-						this._ContadorId = value.Id;
-					}
-					else
-					{
-						this._ContadorId = default(int);
-					}
-					this.SendPropertyChanged("Contador");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Faturas(Fatura entity)
-		{
-			this.SendPropertyChanging();
-			entity.Consumo = this;
-		}
-		
-		private void detach_Faturas(Fatura entity)
-		{
-			this.SendPropertyChanging();
-			entity.Consumo = null;
 		}
 	}
 	
@@ -376,9 +125,9 @@ namespace SistemaAguas.API
 		
 		private bool _Ativo;
 		
-		private EntitySet<Contador> _Contadors;
-		
 		private EntitySet<Fatura> _Faturas;
+		
+		private EntitySet<Contador> _Contadors;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -406,12 +155,12 @@ namespace SistemaAguas.API
 		
 		public Cliente()
 		{
-			this._Contadors = new EntitySet<Contador>(new Action<Contador>(this.attach_Contadors), new Action<Contador>(this.detach_Contadors));
 			this._Faturas = new EntitySet<Fatura>(new Action<Fatura>(this.attach_Faturas), new Action<Fatura>(this.detach_Faturas));
+			this._Contadors = new EntitySet<Contador>(new Action<Contador>(this.attach_Contadors), new Action<Contador>(this.detach_Contadors));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int Id
 		{
 			get
@@ -591,19 +340,6 @@ namespace SistemaAguas.API
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Cliente_Contador", Storage="_Contadors", ThisKey="Id", OtherKey="ClienteId")]
-		public EntitySet<Contador> Contadors
-		{
-			get
-			{
-				return this._Contadors;
-			}
-			set
-			{
-				this._Contadors.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Cliente_Fatura", Storage="_Faturas", ThisKey="Id", OtherKey="ClienteId")]
 		public EntitySet<Fatura> Faturas
 		{
@@ -617,6 +353,19 @@ namespace SistemaAguas.API
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Cliente_Contador", Storage="_Contadors", ThisKey="Id", OtherKey="ClienteId")]
+		public EntitySet<Contador> Contadors
+		{
+			get
+			{
+				return this._Contadors;
+			}
+			set
+			{
+				this._Contadors.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -635,6 +384,18 @@ namespace SistemaAguas.API
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Faturas(Fatura entity)
+		{
+			this.SendPropertyChanging();
+			entity.Cliente = this;
+		}
+		
+		private void detach_Faturas(Fatura entity)
+		{
+			this.SendPropertyChanging();
+			entity.Cliente = null;
 		}
 		
 		private void attach_Contadors(Contador entity)
@@ -647,273 +408,6 @@ namespace SistemaAguas.API
 		{
 			this.SendPropertyChanging();
 			entity.Cliente = null;
-		}
-		
-		private void attach_Faturas(Fatura entity)
-		{
-			this.SendPropertyChanging();
-			entity.Cliente = this;
-		}
-		
-		private void detach_Faturas(Fatura entity)
-		{
-			this.SendPropertyChanging();
-			entity.Cliente = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Contador")]
-	public partial class Contador : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _NumeroContador;
-		
-		private System.DateTime _DataInstalacao;
-		
-		private bool _Ativo;
-		
-		private int _ClienteId;
-		
-		private EntitySet<Consumo> _Consumos;
-		
-		private EntitySet<Fatura> _Faturas;
-		
-		private EntityRef<Cliente> _Cliente;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnNumeroContadorChanging(string value);
-    partial void OnNumeroContadorChanged();
-    partial void OnDataInstalacaoChanging(System.DateTime value);
-    partial void OnDataInstalacaoChanged();
-    partial void OnAtivoChanging(bool value);
-    partial void OnAtivoChanged();
-    partial void OnClienteIdChanging(int value);
-    partial void OnClienteIdChanged();
-    #endregion
-		
-		public Contador()
-		{
-			this._Consumos = new EntitySet<Consumo>(new Action<Consumo>(this.attach_Consumos), new Action<Consumo>(this.detach_Consumos));
-			this._Faturas = new EntitySet<Fatura>(new Action<Fatura>(this.attach_Faturas), new Action<Fatura>(this.detach_Faturas));
-			this._Cliente = default(EntityRef<Cliente>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroContador", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string NumeroContador
-		{
-			get
-			{
-				return this._NumeroContador;
-			}
-			set
-			{
-				if ((this._NumeroContador != value))
-				{
-					this.OnNumeroContadorChanging(value);
-					this.SendPropertyChanging();
-					this._NumeroContador = value;
-					this.SendPropertyChanged("NumeroContador");
-					this.OnNumeroContadorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataInstalacao", DbType="DateTime NOT NULL")]
-		public System.DateTime DataInstalacao
-		{
-			get
-			{
-				return this._DataInstalacao;
-			}
-			set
-			{
-				if ((this._DataInstalacao != value))
-				{
-					this.OnDataInstalacaoChanging(value);
-					this.SendPropertyChanging();
-					this._DataInstalacao = value;
-					this.SendPropertyChanged("DataInstalacao");
-					this.OnDataInstalacaoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ativo", DbType="Bit NOT NULL")]
-		public bool Ativo
-		{
-			get
-			{
-				return this._Ativo;
-			}
-			set
-			{
-				if ((this._Ativo != value))
-				{
-					this.OnAtivoChanging(value);
-					this.SendPropertyChanging();
-					this._Ativo = value;
-					this.SendPropertyChanged("Ativo");
-					this.OnAtivoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClienteId", DbType="Int NOT NULL")]
-		public int ClienteId
-		{
-			get
-			{
-				return this._ClienteId;
-			}
-			set
-			{
-				if ((this._ClienteId != value))
-				{
-					if (this._Cliente.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnClienteIdChanging(value);
-					this.SendPropertyChanging();
-					this._ClienteId = value;
-					this.SendPropertyChanged("ClienteId");
-					this.OnClienteIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Contador_Consumo", Storage="_Consumos", ThisKey="Id", OtherKey="ContadorId")]
-		public EntitySet<Consumo> Consumos
-		{
-			get
-			{
-				return this._Consumos;
-			}
-			set
-			{
-				this._Consumos.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Contador_Fatura", Storage="_Faturas", ThisKey="Id", OtherKey="ContadorId")]
-		public EntitySet<Fatura> Faturas
-		{
-			get
-			{
-				return this._Faturas;
-			}
-			set
-			{
-				this._Faturas.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Cliente_Contador", Storage="_Cliente", ThisKey="ClienteId", OtherKey="Id", IsForeignKey=true)]
-		public Cliente Cliente
-		{
-			get
-			{
-				return this._Cliente.Entity;
-			}
-			set
-			{
-				Cliente previousValue = this._Cliente.Entity;
-				if (((previousValue != value) 
-							|| (this._Cliente.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Cliente.Entity = null;
-						previousValue.Contadors.Remove(this);
-					}
-					this._Cliente.Entity = value;
-					if ((value != null))
-					{
-						value.Contadors.Add(this);
-						this._ClienteId = value.Id;
-					}
-					else
-					{
-						this._ClienteId = default(int);
-					}
-					this.SendPropertyChanged("Cliente");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Consumos(Consumo entity)
-		{
-			this.SendPropertyChanging();
-			entity.Contador = this;
-		}
-		
-		private void detach_Consumos(Consumo entity)
-		{
-			this.SendPropertyChanging();
-			entity.Contador = null;
-		}
-		
-		private void attach_Faturas(Fatura entity)
-		{
-			this.SendPropertyChanging();
-			entity.Contador = this;
-		}
-		
-		private void detach_Faturas(Fatura entity)
-		{
-			this.SendPropertyChanging();
-			entity.Contador = null;
 		}
 	}
 	
@@ -975,7 +469,7 @@ namespace SistemaAguas.API
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int Id
 		{
 			get
@@ -1267,6 +761,512 @@ namespace SistemaAguas.API
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Consumo")]
+	public partial class Consumo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.DateTime _DataLeitura;
+		
+		private double _ValorConsumido;
+		
+		private double _LeituraAtual;
+		
+		private double _LeituraAnterior;
+		
+		private int _ContadorId;
+		
+		private EntitySet<Fatura> _Faturas;
+		
+		private EntityRef<Contador> _Contador;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnDataLeituraChanging(System.DateTime value);
+    partial void OnDataLeituraChanged();
+    partial void OnValorConsumidoChanging(double value);
+    partial void OnValorConsumidoChanged();
+    partial void OnLeituraAtualChanging(double value);
+    partial void OnLeituraAtualChanged();
+    partial void OnLeituraAnteriorChanging(double value);
+    partial void OnLeituraAnteriorChanged();
+    partial void OnContadorIdChanging(int value);
+    partial void OnContadorIdChanged();
+    #endregion
+		
+		public Consumo()
+		{
+			this._Faturas = new EntitySet<Fatura>(new Action<Fatura>(this.attach_Faturas), new Action<Fatura>(this.detach_Faturas));
+			this._Contador = default(EntityRef<Contador>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataLeitura", DbType="DateTime NOT NULL")]
+		public System.DateTime DataLeitura
+		{
+			get
+			{
+				return this._DataLeitura;
+			}
+			set
+			{
+				if ((this._DataLeitura != value))
+				{
+					this.OnDataLeituraChanging(value);
+					this.SendPropertyChanging();
+					this._DataLeitura = value;
+					this.SendPropertyChanged("DataLeitura");
+					this.OnDataLeituraChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ValorConsumido", DbType="Float NOT NULL")]
+		public double ValorConsumido
+		{
+			get
+			{
+				return this._ValorConsumido;
+			}
+			set
+			{
+				if ((this._ValorConsumido != value))
+				{
+					this.OnValorConsumidoChanging(value);
+					this.SendPropertyChanging();
+					this._ValorConsumido = value;
+					this.SendPropertyChanged("ValorConsumido");
+					this.OnValorConsumidoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LeituraAtual", DbType="Float NOT NULL")]
+		public double LeituraAtual
+		{
+			get
+			{
+				return this._LeituraAtual;
+			}
+			set
+			{
+				if ((this._LeituraAtual != value))
+				{
+					this.OnLeituraAtualChanging(value);
+					this.SendPropertyChanging();
+					this._LeituraAtual = value;
+					this.SendPropertyChanged("LeituraAtual");
+					this.OnLeituraAtualChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LeituraAnterior", DbType="Float NOT NULL")]
+		public double LeituraAnterior
+		{
+			get
+			{
+				return this._LeituraAnterior;
+			}
+			set
+			{
+				if ((this._LeituraAnterior != value))
+				{
+					this.OnLeituraAnteriorChanging(value);
+					this.SendPropertyChanging();
+					this._LeituraAnterior = value;
+					this.SendPropertyChanged("LeituraAnterior");
+					this.OnLeituraAnteriorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContadorId", DbType="Int NOT NULL")]
+		public int ContadorId
+		{
+			get
+			{
+				return this._ContadorId;
+			}
+			set
+			{
+				if ((this._ContadorId != value))
+				{
+					if (this._Contador.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnContadorIdChanging(value);
+					this.SendPropertyChanging();
+					this._ContadorId = value;
+					this.SendPropertyChanged("ContadorId");
+					this.OnContadorIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Consumo_Fatura", Storage="_Faturas", ThisKey="Id", OtherKey="ConsumoId")]
+		public EntitySet<Fatura> Faturas
+		{
+			get
+			{
+				return this._Faturas;
+			}
+			set
+			{
+				this._Faturas.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Contador_Consumo", Storage="_Contador", ThisKey="ContadorId", OtherKey="Id", IsForeignKey=true)]
+		public Contador Contador
+		{
+			get
+			{
+				return this._Contador.Entity;
+			}
+			set
+			{
+				Contador previousValue = this._Contador.Entity;
+				if (((previousValue != value) 
+							|| (this._Contador.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Contador.Entity = null;
+						previousValue.Consumos.Remove(this);
+					}
+					this._Contador.Entity = value;
+					if ((value != null))
+					{
+						value.Consumos.Add(this);
+						this._ContadorId = value.Id;
+					}
+					else
+					{
+						this._ContadorId = default(int);
+					}
+					this.SendPropertyChanged("Contador");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Faturas(Fatura entity)
+		{
+			this.SendPropertyChanging();
+			entity.Consumo = this;
+		}
+		
+		private void detach_Faturas(Fatura entity)
+		{
+			this.SendPropertyChanging();
+			entity.Consumo = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Contador")]
+	public partial class Contador : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _NumeroContador;
+		
+		private System.DateTime _DataInstalacao;
+		
+		private bool _Ativo;
+		
+		private int _ClienteId;
+		
+		private EntitySet<Fatura> _Faturas;
+		
+		private EntitySet<Consumo> _Consumos;
+		
+		private EntityRef<Cliente> _Cliente;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNumeroContadorChanging(string value);
+    partial void OnNumeroContadorChanged();
+    partial void OnDataInstalacaoChanging(System.DateTime value);
+    partial void OnDataInstalacaoChanged();
+    partial void OnAtivoChanging(bool value);
+    partial void OnAtivoChanged();
+    partial void OnClienteIdChanging(int value);
+    partial void OnClienteIdChanged();
+    #endregion
+		
+		public Contador()
+		{
+			this._Faturas = new EntitySet<Fatura>(new Action<Fatura>(this.attach_Faturas), new Action<Fatura>(this.detach_Faturas));
+			this._Consumos = new EntitySet<Consumo>(new Action<Consumo>(this.attach_Consumos), new Action<Consumo>(this.detach_Consumos));
+			this._Cliente = default(EntityRef<Cliente>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumeroContador", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string NumeroContador
+		{
+			get
+			{
+				return this._NumeroContador;
+			}
+			set
+			{
+				if ((this._NumeroContador != value))
+				{
+					this.OnNumeroContadorChanging(value);
+					this.SendPropertyChanging();
+					this._NumeroContador = value;
+					this.SendPropertyChanged("NumeroContador");
+					this.OnNumeroContadorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataInstalacao", DbType="DateTime NOT NULL")]
+		public System.DateTime DataInstalacao
+		{
+			get
+			{
+				return this._DataInstalacao;
+			}
+			set
+			{
+				if ((this._DataInstalacao != value))
+				{
+					this.OnDataInstalacaoChanging(value);
+					this.SendPropertyChanging();
+					this._DataInstalacao = value;
+					this.SendPropertyChanged("DataInstalacao");
+					this.OnDataInstalacaoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ativo", DbType="Bit NOT NULL")]
+		public bool Ativo
+		{
+			get
+			{
+				return this._Ativo;
+			}
+			set
+			{
+				if ((this._Ativo != value))
+				{
+					this.OnAtivoChanging(value);
+					this.SendPropertyChanging();
+					this._Ativo = value;
+					this.SendPropertyChanged("Ativo");
+					this.OnAtivoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClienteId", DbType="Int NOT NULL")]
+		public int ClienteId
+		{
+			get
+			{
+				return this._ClienteId;
+			}
+			set
+			{
+				if ((this._ClienteId != value))
+				{
+					if (this._Cliente.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnClienteIdChanging(value);
+					this.SendPropertyChanging();
+					this._ClienteId = value;
+					this.SendPropertyChanged("ClienteId");
+					this.OnClienteIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Contador_Fatura", Storage="_Faturas", ThisKey="Id", OtherKey="ContadorId")]
+		public EntitySet<Fatura> Faturas
+		{
+			get
+			{
+				return this._Faturas;
+			}
+			set
+			{
+				this._Faturas.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Contador_Consumo", Storage="_Consumos", ThisKey="Id", OtherKey="ContadorId")]
+		public EntitySet<Consumo> Consumos
+		{
+			get
+			{
+				return this._Consumos;
+			}
+			set
+			{
+				this._Consumos.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Cliente_Contador", Storage="_Cliente", ThisKey="ClienteId", OtherKey="Id", IsForeignKey=true)]
+		public Cliente Cliente
+		{
+			get
+			{
+				return this._Cliente.Entity;
+			}
+			set
+			{
+				Cliente previousValue = this._Cliente.Entity;
+				if (((previousValue != value) 
+							|| (this._Cliente.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Cliente.Entity = null;
+						previousValue.Contadors.Remove(this);
+					}
+					this._Cliente.Entity = value;
+					if ((value != null))
+					{
+						value.Contadors.Add(this);
+						this._ClienteId = value.Id;
+					}
+					else
+					{
+						this._ClienteId = default(int);
+					}
+					this.SendPropertyChanged("Cliente");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Faturas(Fatura entity)
+		{
+			this.SendPropertyChanging();
+			entity.Contador = this;
+		}
+		
+		private void detach_Faturas(Fatura entity)
+		{
+			this.SendPropertyChanging();
+			entity.Contador = null;
+		}
+		
+		private void attach_Consumos(Consumo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Contador = this;
+		}
+		
+		private void detach_Consumos(Consumo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Contador = null;
 		}
 	}
 }
