@@ -40,6 +40,21 @@ namespace SistemaAguas.API.Controllers
         [HttpPost]
         public IHttpActionResult Post([FromBody] Cliente novoCliente)
         {
+            if (string.IsNullOrEmpty(novoCliente.Nome))
+            {
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.BadRequest, "O nome é obrigatório"));
+            }
+
+            if (string.IsNullOrWhiteSpace(novoCliente.NIF))
+            {
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.BadRequest,"O NIF é obrigatório."));
+            }
+
+            if (string.IsNullOrWhiteSpace(novoCliente.Email))
+            {
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.BadRequest,"O email é obrigatório."));
+            }
+
             novoCliente.Ativo = true;
             novoCliente.Registo = DateTime.Now;
             db.Clientes.InsertOnSubmit(novoCliente);

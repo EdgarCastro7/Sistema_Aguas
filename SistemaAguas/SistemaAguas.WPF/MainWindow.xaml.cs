@@ -24,5 +24,11 @@ namespace SistemaAguas.WPF
         {
             InitializeComponent();
         }
+
+        private void btnClientes_Click(object sender, RoutedEventArgs e)
+        {
+            ClientesWindow janela = new ClientesWindow();
+            janela.Show();
+        }
     }
 }

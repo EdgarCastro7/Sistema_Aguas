@@ -5,8 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaAguas.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Sistema de Gestão de Águas" Height="600" Width="1000">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Background="#2C3E50">
+            <TextBlock Text="Sistema Águas" FontSize="22" Foreground="White"
+                       FontWeight="Bold"
+                       Margin="20"
+                       HorizontalAlignment="Center"/>
+
+            <Button x:Name="btnClientes"
+                    Content="Clientes"
+                    Margin="10"
+                    Height="40" Click="btnClientes_Click"/>
+
+            <Button x:Name="btnContadores"
+                    Content="Contadores"
+                    Margin="10"
+                    Height="40"/>
+
+            <Button x:Name="btnConsumos"
+                    Content="Consumos"
+                    Margin="10"
+                    Height="40"/>
+
+            <Button x:Name="btnFaturas"
+                    Content="Faturas"
+                    Margin="10"
+                    Height="40"/>
+
+        </StackPanel>
+
+        <Grid Grid.Column="1"
+              Background="WhiteSmoke">
+
+            <TextBlock Text="Bem-vindo ao Sistema de Gestão de Águas"
+                       FontSize="28"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontWeight="Bold"/>
+
+        </Grid>
+
     </Grid>
 </Window>
