@@ -26,7 +26,7 @@
             <Button x:Name="btnContadores"
                     Content="Contadores"
                     Margin="10"
-                    Height="40"/>
+                    Height="40" Click="btnContadores_Click"/>
 
             <Button x:Name="btnConsumos"
                     Content="Consumos"

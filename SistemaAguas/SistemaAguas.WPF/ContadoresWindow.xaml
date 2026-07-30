@@ -1,0 +1,102 @@
+﻿<Window x:Class="SistemaAguas.WPF.ContadoresWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SistemaAguas.WPF"
+        mc:Ignorable="d"
+        Title="ContadoresWindow" Height="450" Width="800">
+    <Grid Margin="15">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Gestão de Contadores"
+               FontSize="20"
+               FontWeight="Bold"
+               Margin="0,0,0,20"/>
+
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Número:"/>
+            <TextBox x:Name="txtNumeroContador"
+                 Grid.Column="1"
+                 Margin="5"/>
+
+            <Label Content="Data Instalação:"
+               Grid.Column="2"/>
+            <DatePicker x:Name="dpDataInstalacao"
+                    Grid.Column="3"
+                    Margin="5"/>
+
+            <Label Content="Cliente:"
+               Grid.Row="1"/>
+
+            <ComboBox x:Name="cbClientes"
+                  Grid.Row="1"
+                  Grid.Column="1"
+                  Margin="5"
+                  DisplayMemberPath="Nome"
+                  SelectedValuePath="Id"
+                  SelectionChanged="cbClientes_SelectionChanged"/>
+
+            <CheckBox x:Name="chkAtivo"
+                  Grid.Row="2"
+                  Grid.Column="1"
+                  Content="Contador Ativo"
+                  VerticalAlignment="Center"/>
+
+            <StackPanel Grid.Row="2"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+
+                <Button x:Name="btnAdicionar"
+                    Content="Adicionar"
+                    Width="90"
+                    Margin="5" Click="btnAdicionar_Click"/>
+
+                <Button x:Name="btnEditar"
+                    Content="Editar"
+                    Width="90"
+                    Margin="5" Click="btnEditar_Click"/>
+
+                <Button x:Name="btnEliminar"
+                    Content="Eliminar"
+                    Width="90"
+                    Margin="5" Click="btnEliminar_Click"/>
+
+                <Button x:Name="btnLimpar"
+                    Content="Limpar"
+                    Width="90"
+                    Margin="5" Click="btnLimpar_Click"/>
+
+            </StackPanel>
+
+        </Grid>
+
+        <DataGrid x:Name="dgContadores"
+              Grid.Row="2"
+              Margin="0,20,0,0"
+              AutoGenerateColumns="True"
+              IsReadOnly="True" SelectionChanged="dgContadores_SelectionChanged"/>
+
+    </Grid>
+</Window>
