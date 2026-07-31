@@ -39,6 +39,10 @@ namespace SistemaAguas.API.Controllers
         // POST api/contadores
         public IHttpActionResult Post([FromBody] Contador contador)
         {
+            if (contador == null)
+            {
+                return BadRequest();
+            }
 
             var cliente = db.Clientes.SingleOrDefault(c => c.Id == contador.ClienteId);
 
