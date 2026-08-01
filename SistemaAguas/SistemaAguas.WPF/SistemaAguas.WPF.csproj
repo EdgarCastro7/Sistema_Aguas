@@ -103,6 +103,7 @@
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Consumo.cs" />
     <Compile Include="Models\Contador.cs" />
+    <Compile Include="Models\Fatura.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
