@@ -1,0 +1,218 @@
+﻿<Window x:Class="SistemaAguas.WPF.FaturasWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gestão de Faturas"
+        Height="700"
+        Width="1000">
+
+    <Grid Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Filtros -->
+        <GroupBox Header="Pesquisar Faturas"
+                  Grid.Row="0"
+                  Margin="0,0,0,10">
+
+            <Grid Margin="10">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Cliente:"
+                           VerticalAlignment="Center"/>
+
+                <ComboBox x:Name="cbPesquisaCliente"
+                          Grid.Column="1"
+                          Margin="5"/>
+
+                <TextBlock Text="De:"
+                           Grid.Column="2"
+                           VerticalAlignment="Center"/>
+
+                <DatePicker x:Name="dpInicio"
+                            Grid.Column="3"
+                            Margin="5"/>
+
+                <TextBlock Text="Até:"
+                           Grid.Column="4"
+                           VerticalAlignment="Center"/>
+
+                <DatePicker x:Name="dpFim"
+                            Grid.Column="5"
+                            Margin="5"/>
+
+                <ComboBox x:Name="cbEstadoPagamento"
+                          Grid.Column="6"
+                          Margin="5">
+                    <ComboBoxItem Content="Todos"/>
+                    <ComboBoxItem Content="Pagas"/>
+                    <ComboBoxItem Content="Não Pagas"/>
+                </ComboBox>
+
+                <Button x:Name="btnPesquisar"
+                        Grid.Column="7"
+                        Content="Pesquisar"
+                        Width="90"
+                        Margin="5"/>
+            </Grid>
+
+        </GroupBox>
+
+        <!-- DataGrid -->
+        <DataGrid x:Name="dgFaturas"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  SelectionChanged="dgFaturas_SelectionChanged">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="ID"
+                                    Binding="{Binding Id}"/>
+
+                <DataGridTextColumn Header="Data"
+                                    Binding="{Binding DataFatura}"/>
+
+                <DataGridTextColumn Header="Cliente"
+                                    Binding="{Binding ClienteId}"/>
+
+                <DataGridTextColumn Header="Contador"
+                                    Binding="{Binding ContadorId}"/>
+
+                <DataGridTextColumn Header="Consumo"
+                                    Binding="{Binding ConsumoId}"/>
+
+                <DataGridTextColumn Header="Valor Total"
+                                    Binding="{Binding ValorTotal}"/>
+
+                <DataGridCheckBoxColumn Header="Pago"
+                                        Binding="{Binding Pago}"/>
+
+                <DataGridCheckBoxColumn Header="Anulada"
+                                        Binding="{Binding Anulada}"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+        <!-- Dados -->
+        <Grid Grid.Row="2"
+              Margin="0,10">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Cliente:"
+                       VerticalAlignment="Center"/>
+
+            <ComboBox x:Name="cbClientes"
+                      Grid.Column="1"
+                      Margin="5"/>
+
+            <TextBlock Text="Contador:"
+                       Grid.Row="1"
+                       VerticalAlignment="Center"/>
+
+            <ComboBox x:Name="cbContadores"
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      Margin="5"/>
+
+            <TextBlock Text="Consumo:"
+                       Grid.Row="2"
+                       VerticalAlignment="Center"/>
+
+            <ComboBox x:Name="cbConsumos"
+                      Grid.Row="2"
+                      Grid.Column="1"
+                      Margin="5"/>
+
+            <TextBlock Text="Data da Fatura:"
+                       Grid.Row="3"
+                       VerticalAlignment="Center"/>
+
+            <DatePicker x:Name="dpDataFatura"
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Margin="5"/>
+
+            <TextBlock Text="Valor Total:"
+                       Grid.Row="4"
+                       VerticalAlignment="Center"/>
+
+            <TextBox x:Name="txtValorTotal"
+                     Grid.Row="4"
+                     Grid.Column="1"
+                     Margin="5"
+                     IsReadOnly="True"/>
+
+            <StackPanel Grid.Row="5"
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        Margin="5">
+
+                <CheckBox x:Name="chkPago"
+                          Content="Pago"
+                          Margin="0,0,20,0"/>
+
+                <CheckBox x:Name="chkAnulada"
+                          Content="Anulada"/>
+
+            </StackPanel>
+
+        </Grid>
+
+        <!-- Botões -->
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="10">
+
+            <Button x:Name="btnAdicionar"
+                    Content="Adicionar"
+                    Width="100"
+                    Margin="5"/>
+
+            <Button x:Name="btnEditar"
+                    Content="Editar"
+                    Width="100"
+                    Margin="5"/>
+
+            <Button x:Name="btnEliminar"
+                    Content="Eliminar"
+                    Width="100"
+                    Margin="5"/>
+
+            <Button x:Name="btnLimpar"
+                    Content="Limpar"
+                    Width="100"
+                    Margin="5"/>
+
+        </StackPanel>
+
+    </Grid>
+</Window>
