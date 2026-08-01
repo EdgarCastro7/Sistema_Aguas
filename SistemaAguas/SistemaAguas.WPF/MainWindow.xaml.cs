@@ -36,5 +36,11 @@ namespace SistemaAguas.WPF
             ContadoresWindow janela = new ContadoresWindow();
             janela.Show();
         }
+
+        private void btnConsumos_Click(object sender, RoutedEventArgs e)
+        {
+            ConsumosWindow janela = new ConsumosWindow();
+            janela.Show();
+        }
     }
 }

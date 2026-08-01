@@ -69,6 +69,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ConsumosWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ContadoresWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -83,6 +87,9 @@
     </Compile>
     <Compile Include="ClientesWindow.xaml.cs">
       <DependentUpon>ClientesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumosWindow.xaml.cs">
+      <DependentUpon>ConsumosWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ContadoresWindow.xaml.cs">
       <DependentUpon>ContadoresWindow.xaml</DependentUpon>

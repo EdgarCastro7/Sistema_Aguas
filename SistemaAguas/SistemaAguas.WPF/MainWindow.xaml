@@ -31,7 +31,7 @@
             <Button x:Name="btnConsumos"
                     Content="Consumos"
                     Margin="10"
-                    Height="40"/>
+                    Height="40" Click="btnConsumos_Click"/>
 
             <Button x:Name="btnFaturas"
                     Content="Faturas"

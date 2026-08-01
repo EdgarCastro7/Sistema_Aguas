@@ -41,7 +41,7 @@ namespace SistemaAguas.API.Controllers
         {
             if (consumo == null)
             {
-                return ResponseMessage(Request.CreateResponse(HttpStatusCode.BadRequest,"Dados do consumo inválidos."));
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.BadRequest,"Dados do consumo inválidos"));
             }
 
             var contador = db.Contadors.SingleOrDefault(c => c.Id == consumo.ContadorId);
@@ -68,13 +68,16 @@ namespace SistemaAguas.API.Controllers
 
             if (leituraDuplicada)
             {
-                return ResponseMessage(Request.CreateResponse(HttpStatusCode.BadRequest, "Já existe uma leitura para este contador nesta data."));
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.BadRequest, "Já existe uma leitura para este contador nesta data"));
             }
 
-            var ultimoConsumo = (from consumoAnterior in db.Consumos
-                                 where consumoAnterior.ContadorId == consumo.ContadorId
-                                 orderby consumoAnterior.Id descending
-                                 select consumoAnterior).FirstOrDefault();
+            var ultimoConsumo = db.Consumos.Where(c => c.ContadorId == consumo.ContadorId).OrderByDescending(c => c.DataLeitura).FirstOrDefault();
+
+
+            if (ultimoConsumo != null && consumo.DataLeitura <= ultimoConsumo.DataLeitura)
+            {
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.BadRequest,"A data da leitura deve ser posterior à última leitura registada"));
+            }
 
             if (ultimoConsumo == null)
             {
@@ -143,8 +146,7 @@ namespace SistemaAguas.API.Controllers
             {
                 if (fatura.Pago)
                 {
-                    return ResponseMessage(Request.CreateResponse(HttpStatusCode.NotAcceptable,
-                        "Não é possível corrigir uma leitura de uma fatura já paga."));
+                    return ResponseMessage(Request.CreateResponse(HttpStatusCode.NotAcceptable,"Não é possível corrigir uma leitura de uma fatura já paga"));
                 }
                 fatura.Anulado = true;
                 db.SubmitChanges();

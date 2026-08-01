@@ -1,0 +1,154 @@
+﻿<Window x:Class="SistemaAguas.WPF.ConsumosWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gestão de Consumos"
+        Height="600"
+        Width="900">
+
+    <Grid Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+
+        <!-- Lista -->
+        <DataGrid x:Name="dgConsumos"
+                  Grid.Row="0"
+                  AutoGenerateColumns="False"
+                  SelectionChanged="dgConsumos_SelectionChanged"
+                  Margin="0,0,0,10">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="ID"
+                                    Binding="{Binding Id}"
+                                    Width="60"/>
+
+                <DataGridTextColumn Header="Data"
+                                    Binding="{Binding DataLeitura}"
+                                    Width="150"/>
+
+                <DataGridTextColumn Header="Leitura Atual"
+                                    Binding="{Binding LeituraAtual}"
+                                    Width="120"/>
+
+                <DataGridTextColumn Header="Leitura Anterior"
+                                    Binding="{Binding LeituraAnterior}"
+                                    Width="130"/>
+
+                <DataGridTextColumn Header="Consumo"
+                                    Binding="{Binding ValorConsumido}"
+                                    Width="120"/>
+
+                <DataGridTextColumn Header="Contador"
+                                    Binding="{Binding ContadorId}"
+                                    Width="100"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+        <!-- Formulário -->
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Contador:"
+                       Grid.Row="0"
+                       VerticalAlignment="Center"/>
+
+            <ComboBox x:Name="cbContadores"
+                      Grid.Row="0"
+                      Grid.Column="1"
+                      Margin="5"
+                      DisplayMemberPath="NumeroContador"
+                      SelectedValuePath="Id" SelectionChanged="cbContadores_SelectionChanged"/>
+
+            <TextBlock Text="Data da Leitura:"
+                       Grid.Row="1"
+                       VerticalAlignment="Center"/>
+
+            <DatePicker x:Name="dpDataLeitura"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="5"/>
+
+            <TextBlock Text="Leitura Atual:"
+                       Grid.Row="2"
+                       VerticalAlignment="Center"/>
+
+            <TextBox x:Name="txtLeituraAtual"
+                     Grid.Row="2"
+                     Grid.Column="1"
+                     Margin="5" TextChanged="txtLeituraAtual_TextChanged"/>
+
+            <TextBlock Text="Leitura Anterior:"
+                       Grid.Row="3"
+                       VerticalAlignment="Center"/>
+
+            <TextBox x:Name="txtLeituraAnterior"
+                     Grid.Row="3"
+                     Grid.Column="1"
+                     Margin="5"
+                     IsReadOnly="True"/>
+
+            <TextBlock Text="Valor Consumido:"
+                       Grid.Row="4"
+                       VerticalAlignment="Center"/>
+
+            <TextBox x:Name="txtValorConsumido"
+                     Grid.Row="4"
+                     Grid.Column="1"
+                     Margin="5"
+                     IsReadOnly="True"/>
+
+            <StackPanel Grid.Row="5"
+                        Grid.ColumnSpan="2"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="10">
+
+                <Button x:Name="btnAdicionar"
+                        Content="Adicionar"
+                        Width="100"
+                        Margin="5"
+                        Click="btnAdicionar_Click"/>
+
+                <Button x:Name="btnEditar"
+                        Content="Editar"
+                        Width="100"
+                        Margin="5"
+                        Click="btnEditar_Click"/>
+
+                <Button x:Name="btnEliminar"
+                        Content="Eliminar"
+                        Width="100"
+                        Margin="5"
+                        Click="btnEliminar_Click"/>
+
+                <Button x:Name="btnLimpar"
+                        Content="Limpar"
+                        Width="100"
+                        Margin="5"
+                        Click="btnLimpar_Click"/>
+
+            </StackPanel>
+
+        </Grid>
+
+    </Grid>
+
+</Window>

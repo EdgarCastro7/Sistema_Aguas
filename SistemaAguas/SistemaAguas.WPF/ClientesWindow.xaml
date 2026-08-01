@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaAguas.WPF"
         mc:Ignorable="d"
-        Title="ClientesWindow" Height="450" Width="850">
+        Title="Gestão de Clientes" Height="450" Width="850">
     <Grid Margin="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
