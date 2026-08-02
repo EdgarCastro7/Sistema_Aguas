@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
@@ -93,7 +94,7 @@ namespace SistemaAguas.WPF
         {
             HttpResponseMessage response = await client.GetAsync("api/faturas");
 
-            if(response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
                 List<Fatura> faturas = await response.Content.ReadAsAsync<List<Fatura>>();
 
@@ -123,8 +124,26 @@ namespace SistemaAguas.WPF
             dgFaturas.SelectedItem = null;
         }
 
-        private void dgFaturas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void dgFaturas_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (cbContadores.SelectedItem == null)
+            {
+                return;
+            }
+
+            Contador contador = (Contador)cbContadores.SelectedItem;
+
+            HttpResponseMessage response = await client.GetAsync($"api/clientes/{contador.ClienteId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                Cliente cliente = await response.Content.ReadAsAsync<Cliente>();
+
+                cbClientes.SelectedValue = cliente.Nome;
+            }
+
+            await CarregarConsumosDoContador(contador.Id);
+
             if (dgFaturas.SelectedItem == null)
             {
                 return;
@@ -142,6 +161,23 @@ namespace SistemaAguas.WPF
 
             chkPago.IsChecked = fatura.Pago;
             chkAnulada.IsChecked = fatura.Anulada;
+        }
+
+        private async Task CarregarConsumosDoContador(int contadorId)
+        {
+            HttpResponseMessage response = await client.GetAsync($"api/consumos/contador/{contadorId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                List<Consumo> consumos = await response.Content.ReadAsAsync<List<Consumo>>();
+
+                cbConsumos.ItemsSource = consumos;
+            }
+            else
+            {
+                string erro = await response.Content.ReadAsStringAsync();
+                MessageBox.Show(erro);
+            }
         }
 
         private void btnLimpar_Click(object sender, RoutedEventArgs e)
@@ -276,5 +312,50 @@ namespace SistemaAguas.WPF
                 MessageBox.Show(erro);
             }
         }
+
+        private async void cbContadores_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbContadores.SelectedItem == null)
+            {
+                return;
+            }
+            Contador contador = (Contador)cbContadores.SelectedItem;
+
+            cbClientes.SelectedValue = contador.ClienteId;
+
+            await CarregarConsumosDoContador(contador.Id);
+        }
+
+        private void cbConsumos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbConsumos.SelectedItem == null)
+            {
+                return;
+            }
+
+            Consumo consumo = (Consumo)cbConsumos.SelectedItem;
+
+            double tarifa;
+
+            if (consumo.ValorConsumido <= 5)
+            {
+                tarifa = 0.3;
+            }
+            else if (consumo.ValorConsumido <= 15)
+            {
+                tarifa = 0.8;
+            }
+            else if (consumo.ValorConsumido <= 25)
+            {
+                tarifa = 1.2;
+            }
+            else
+            {
+                tarifa = 1.6;
+            }
+            txtValorTotal.Text = (consumo.ValorConsumido * tarifa).ToString("0.00");
+        }
     }
 }
+    
+    

@@ -36,6 +36,15 @@ namespace SistemaAguas.API.Controllers
             return ResponseMessage(Request.CreateResponse(HttpStatusCode.NotFound));
         }
 
+        [HttpGet]
+        [Route("api/consumos/contador/{contadorId}")]
+        public IHttpActionResult GetPorContador(int contadorId)
+        {
+            var consumos = db.Consumos.Where(c => c.ContadorId == contadorId).ToList();
+
+            return Ok(consumos);
+        }
+
         // POST api/consumos
         public IHttpActionResult Post([FromBody] Consumo consumo)
         {

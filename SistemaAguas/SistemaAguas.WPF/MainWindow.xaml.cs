@@ -42,5 +42,11 @@ namespace SistemaAguas.WPF
             ConsumosWindow janela = new ConsumosWindow();
             janela.Show();
         }
+
+        private void btnFaturas_Click(object sender, RoutedEventArgs e)
+        {
+            FaturasWindow janela = new FaturasWindow();
+            janela.Show();
+        }
     }
 }

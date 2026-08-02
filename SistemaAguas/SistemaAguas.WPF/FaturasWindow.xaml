@@ -131,7 +131,11 @@
 
             <ComboBox x:Name="cbClientes"
                       Grid.Column="1"
-                      Margin="5"/>
+                      Margin="5"
+                      DisplayMemberPath="Nome"
+                      SelectedValuePath="Id"
+                      IsReadOnly="True"
+                      IsEnabled="False"/>
 
             <TextBlock Text="Contador:"
                        Grid.Row="1"
@@ -140,7 +144,7 @@
             <ComboBox x:Name="cbContadores"
                       Grid.Row="1"
                       Grid.Column="1"
-                      Margin="5"/>
+                      Margin="5" SelectionChanged="cbContadores_SelectionChanged"/>
 
             <TextBlock Text="Consumo:"
                        Grid.Row="2"
@@ -149,7 +153,7 @@
             <ComboBox x:Name="cbConsumos"
                       Grid.Row="2"
                       Grid.Column="1"
-                      Margin="5"/>
+                      Margin="5" SelectionChanged="cbConsumos_SelectionChanged"/>
 
             <TextBlock Text="Data da Fatura:"
                        Grid.Row="3"
@@ -180,7 +184,8 @@
                           Margin="0,0,20,0"/>
 
                 <CheckBox x:Name="chkAnulada"
-                          Content="Anulada"/>
+                          Content="Anulada"
+                          IsEnabled="False"/>
 
             </StackPanel>
 

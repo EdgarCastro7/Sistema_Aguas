@@ -36,7 +36,7 @@
             <Button x:Name="btnFaturas"
                     Content="Faturas"
                     Margin="10"
-                    Height="40"/>
+                    Height="40" Click="btnFaturas_Click"/>
 
         </StackPanel>
 
