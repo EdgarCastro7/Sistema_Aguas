@@ -160,7 +160,7 @@ namespace SistemaAguas.WPF
             txtValorTotal.Text = fatura.ValorTotal.ToString();
 
             chkPago.IsChecked = fatura.Pago;
-            chkAnulada.IsChecked = fatura.Anulada;
+            chkAnulada.IsChecked = fatura.Anulado;
         }
 
         private async Task CarregarConsumosDoContador(int contadorId)
@@ -187,12 +187,6 @@ namespace SistemaAguas.WPF
 
         private async void btnAdicionar_Click(object sender, RoutedEventArgs e)
         {
-            if (cbClientes.SelectedItem == null)
-            {
-                MessageBox.Show("Selecione um cliente.");
-                return;
-            }
-
             if (cbContadores.SelectedItem == null)
             {
                 MessageBox.Show("Selecione um contador.");
@@ -211,18 +205,17 @@ namespace SistemaAguas.WPF
                 return;
             }
 
-            Cliente cliente = (Cliente)cbClientes.SelectedItem;
             Contador contador = (Contador)cbContadores.SelectedItem;
             Consumo consumo = (Consumo)cbConsumos.SelectedItem;
 
             Fatura fatura = new Fatura();
 
-            fatura.ClienteId = cliente.Id;
+            fatura.ClienteId = contador.ClienteId;
             fatura.ContadorId = contador.Id;
             fatura.ConsumoId = consumo.Id;
-            fatura.DataFatura = (DateTime)dpDataFatura.SelectedDate;
+            fatura.DataFatura = dpDataFatura.SelectedDate.Value;
             fatura.Pago = chkPago.IsChecked ?? false;
-            fatura.Anulada = chkAnulada.IsChecked ?? false;
+            fatura.Anulado = chkAnulada.IsChecked ?? false;
 
             HttpResponseMessage response = await client.PostAsJsonAsync("api/faturas", fatura);
 
@@ -249,18 +242,29 @@ namespace SistemaAguas.WPF
                 return;
             }
 
-            Cliente cliente = (Cliente)cbClientes.SelectedItem;
+            Fatura fatura = (Fatura)dgFaturas.SelectedItem;
             Contador contador = (Contador)cbContadores.SelectedItem;
             Consumo consumo = (Consumo)cbConsumos.SelectedItem;
 
-            Fatura fatura = (Fatura)dgFaturas.SelectedItem;
+            if (contador == null || consumo == null)
+            {
+                MessageBox.Show("Selecione um contador e um consumo.");
+                return;
+            }
 
-            fatura.ClienteId = cliente.Id;
+            if (dpDataFatura.SelectedDate == null)
+            {
+                MessageBox.Show("Selecione a data da fatura.");
+                return;
+            }
+
             fatura.ContadorId = contador.Id;
             fatura.ConsumoId = consumo.Id;
-            fatura.DataFatura = (DateTime)dpDataFatura.SelectedDate;
+            fatura.ClienteId = contador.ClienteId;
+            fatura.DataFatura = dpDataFatura.SelectedDate.Value;
             fatura.Pago = chkPago.IsChecked ?? false;
-            fatura.Anulada = chkAnulada.IsChecked ?? false;
+            fatura.Anulado = chkAnulada.IsChecked ?? false;
+
 
             HttpResponseMessage response = await client.PutAsJsonAsync($"api/faturas/{fatura.Id}", fatura);
 

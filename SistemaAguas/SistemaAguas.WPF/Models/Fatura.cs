@@ -16,7 +16,7 @@ namespace SistemaAguas.WPF.Models
 
         public bool Pago {  get; set; }
 
-        public bool Anulada { get; set; }
+        public bool Anulado { get; set; }
 
         public int ClienteId { get; set; }
 

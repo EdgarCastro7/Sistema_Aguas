@@ -76,6 +76,7 @@
         <DataGrid x:Name="dgFaturas"
                   Grid.Row="1"
                   AutoGenerateColumns="False"
+                  IsReadOnly="True"
                   SelectionChanged="dgFaturas_SelectionChanged">
 
             <DataGrid.Columns>
@@ -102,7 +103,7 @@
                                         Binding="{Binding Pago}"/>
 
                 <DataGridCheckBoxColumn Header="Anulada"
-                                        Binding="{Binding Anulada}"/>
+                                        Binding="{Binding Anulado}"/>
 
             </DataGrid.Columns>
 

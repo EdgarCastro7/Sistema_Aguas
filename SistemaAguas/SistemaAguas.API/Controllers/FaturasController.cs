@@ -62,7 +62,7 @@ namespace SistemaAguas.API.Controllers
                 return ResponseMessage(Request.CreateResponse(HttpStatusCode.NotFound, "Cliente não encontrado"));
             }
 
-            if (db.Faturas.Any(f => f.ConsumoId == consumo.Id))
+            if (db.Faturas.Any(f => f.ConsumoId == consumo.Id && !f.Anulado))
             {
                 return ResponseMessage(Request.CreateResponse(HttpStatusCode.BadRequest,"Já existe uma fatura para este consumo."));
             }
@@ -150,6 +150,11 @@ namespace SistemaAguas.API.Controllers
             if (fatura.Pago == true)
             {
                 return ResponseMessage(Request.CreateResponse(HttpStatusCode.NotAcceptable, "Esta fatura já foi paga"));
+            }
+
+            if (fatura.Anulado)
+            {
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.BadRequest, "Não é possível eliminar uma fatura anulada."));
             }
 
             try
