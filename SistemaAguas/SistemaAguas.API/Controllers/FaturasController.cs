@@ -95,7 +95,7 @@ namespace SistemaAguas.API.Controllers
             fatura.ClienteId = contador.ClienteId;
             fatura.ValorTotal = valorTotal;
             fatura.DataFatura = fatura.DataFatura;
-            fatura.Pago = false;
+            fatura.Pago = fatura.Pago;
             fatura.Anulado = false;
 
             db.Faturas.InsertOnSubmit(fatura);

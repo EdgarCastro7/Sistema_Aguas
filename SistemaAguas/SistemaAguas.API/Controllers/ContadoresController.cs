@@ -51,7 +51,7 @@ namespace SistemaAguas.API.Controllers
                 return ResponseMessage(Request.CreateResponse(HttpStatusCode.NotFound, "Não existe nenhum cliente associado"));
             }
 
-            contador.Ativo = true;
+            contador.Ativo = contador.Ativo;
             contador.DataInstalacao = DateTime.Now;
 
             db.Contadors.InsertOnSubmit(contador);

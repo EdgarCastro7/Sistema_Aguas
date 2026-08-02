@@ -55,7 +55,17 @@ namespace SistemaAguas.API.Controllers
                 return ResponseMessage(Request.CreateResponse(HttpStatusCode.BadRequest,"O email é obrigatório."));
             }
 
-            novoCliente.Ativo = true;
+            if (novoCliente.NIF.Length != 9)
+            {
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.BadRequest,"O NIF deve ter exatamente 9 dígitos."));
+            }
+
+            if (novoCliente.CodigoPostal.Length != 8)
+            {
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.BadRequest, "O codigo-postal deve conter 8 digitos"));
+            }
+
+            novoCliente.Ativo = novoCliente.Ativo;
             novoCliente.Registo = DateTime.Now;
             db.Clientes.InsertOnSubmit(novoCliente);
             db.SubmitChanges();
