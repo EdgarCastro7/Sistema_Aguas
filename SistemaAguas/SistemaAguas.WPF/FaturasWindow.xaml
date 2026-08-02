@@ -195,22 +195,22 @@
             <Button x:Name="btnAdicionar"
                     Content="Adicionar"
                     Width="100"
-                    Margin="5"/>
+                    Margin="5" Click="btnAdicionar_Click"/>
 
             <Button x:Name="btnEditar"
                     Content="Editar"
                     Width="100"
-                    Margin="5"/>
+                    Margin="5" Click="btnEditar_Click"/>
 
             <Button x:Name="btnEliminar"
                     Content="Eliminar"
                     Width="100"
-                    Margin="5"/>
+                    Margin="5" Click="btnEliminar_Click"/>
 
             <Button x:Name="btnLimpar"
                     Content="Limpar"
                     Width="100"
-                    Margin="5"/>
+                    Margin="5" Click="btnLimpar_Click"/>
 
         </StackPanel>
 
