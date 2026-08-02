@@ -251,14 +251,12 @@ namespace SistemaAguas.WPF
                 return;
             }
 
-            MessageBoxResult resultado = MessageBox.Show(
-                "Tem a certeza que pretende eliminar esta fatura?",
-                "Confirmação",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question);
+            MessageBoxResult resultado = MessageBox.Show("Tem a certeza que pretende eliminar esta fatura?", "Confirmação", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (resultado == MessageBoxResult.No)
+            {
                 return;
+            }
 
             Fatura fatura = (Fatura)dgFaturas.SelectedItem;
 

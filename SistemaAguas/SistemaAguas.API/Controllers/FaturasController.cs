@@ -61,6 +61,11 @@ namespace SistemaAguas.API.Controllers
                 return ResponseMessage(Request.CreateResponse(HttpStatusCode.NotFound, "Cliente não encontrado"));
             }
 
+            if (db.Faturas.Any(f => f.ConsumoId == consumo.Id))
+            {
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.BadRequest,"Já existe uma fatura para este consumo."));
+            }
+
             var valorConsumido = consumo.ValorConsumido;
 
             double Tarifa = 0;
@@ -88,6 +93,7 @@ namespace SistemaAguas.API.Controllers
             fatura.ContadorId = contador.Id;
             fatura.ClienteId = contador.ClienteId;
             fatura.ValorTotal = valorTotal;
+            fatura.DataFatura = fatura.DataFatura;
             fatura.Pago = false;
             fatura.Anulado = false;
 
