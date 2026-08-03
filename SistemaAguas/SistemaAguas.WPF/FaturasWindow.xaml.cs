@@ -30,7 +30,7 @@ namespace SistemaAguas.WPF
         {
             InitializeComponent();
 
-            client.BaseAddress = new Uri("https://localhost:44327/");
+            client.BaseAddress = new Uri("http://sistemaaguas107.somee.com/");
 
             _ = Inicializar();
         }
