@@ -15,6 +15,10 @@ namespace SistemaAguas.API.Controllers
             .ConnectionStrings["SistemaAguasConnectionString"]
             .ConnectionString);
 
+        /// <summary>
+        /// Gets all clients
+        /// </summary>
+        /// <returns>List of clients</returns>
         // GET api/clientes
         [HttpGet]
         public IHttpActionResult Get()
@@ -22,6 +26,11 @@ namespace SistemaAguas.API.Controllers
             return Ok(db.Clientes.ToList());
         }
 
+        /// <summary>
+        /// Gets a client by its identifier
+        /// </summary>
+        /// <param name="id">Client identifier</param>
+        /// <returns>The requested client</returns>
         // GET api/clientes/5
         [HttpGet]
         public IHttpActionResult Get(int id)
@@ -36,6 +45,11 @@ namespace SistemaAguas.API.Controllers
             return ResponseMessage(Request.CreateResponse(HttpStatusCode.NotFound, "Cliente não encontrado"));
         }
 
+        /// <summary>
+        /// Creates a new client
+        /// </summary>
+        /// <param name="novoCliente">Client data</param>
+        /// <returns>Operation result</returns>
         // POST api/clientes
         [HttpPost]
         public IHttpActionResult Post([FromBody] Cliente novoCliente)
@@ -73,6 +87,12 @@ namespace SistemaAguas.API.Controllers
             return ResponseMessage(Request.CreateResponse(HttpStatusCode.Created, novoCliente));
         }
 
+        /// <summary>
+        /// Updates an existing client
+        /// </summary>
+        /// <param name="id">Client identifier</param>
+        /// <param name="clienteAtualizado">Updated client data</param>
+        /// <returns>Operation result</returns>
         // PUT api/clientes
         [HttpPut]
         public IHttpActionResult Put(int id, [FromBody] Cliente clienteAtualizado)
@@ -105,6 +125,11 @@ namespace SistemaAguas.API.Controllers
             return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, cliente));
         }
 
+        /// <summary>
+        /// Deletes a client
+        /// </summary>
+        /// <param name="id">Client identifier</param>
+        /// <returns>Operation result</returns>
         // DELETE api/clientes/5
         [HttpDelete]
         public IHttpActionResult Delete(int id)

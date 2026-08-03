@@ -15,6 +15,10 @@ namespace SistemaAguas.API.Controllers
             .ConnectionStrings["SistemaAguasConnectionString"]
             .ConnectionString);
 
+        /// <summary>
+        /// Gets all counters
+        /// </summary>
+        /// <returns>List of counters</returns>
         // GET api/contadores
         public List<Contador> Get()
         {
@@ -23,6 +27,11 @@ namespace SistemaAguas.API.Controllers
             return list.ToList();
         }
 
+        /// <summary>
+        /// Gets a counter by its identifier
+        /// </summary>
+        /// <param name="id">Counter identifier</param>
+        /// <returns>The requested counter</returns>
         // GET api/contadores/5
         public IHttpActionResult Get(int id)
         {
@@ -36,6 +45,11 @@ namespace SistemaAguas.API.Controllers
             return ResponseMessage(Request.CreateResponse(HttpStatusCode.NotFound, "Contador não encontrado"));
         }
 
+        /// <summary>
+        /// Creates a new counter
+        /// </summary>
+        /// <param name="contador">Counter data</param>
+        /// <returns>Operation result</returns>
         // POST api/contadores
         public IHttpActionResult Post([FromBody] Contador contador)
         {
@@ -67,6 +81,12 @@ namespace SistemaAguas.API.Controllers
             return ResponseMessage(Request.CreateResponse(HttpStatusCode.Created, "Contador criado"));
         }
 
+        /// <summary>
+        /// Updates an existing counter
+        /// </summary>
+        /// <param name="id">Counter identifier</param>
+        /// <param name="contadorAtualizado">Updated counter data</param>
+        /// <returns>Operation result</returns>
         // PUT api/contadores/5
         public IHttpActionResult Put(int id, [FromBody] Contador contadorAtualizado)
         {
@@ -95,6 +115,11 @@ namespace SistemaAguas.API.Controllers
 
         }
 
+        /// <summary>
+        /// Deletes a counter
+        /// </summary>
+        /// <param name="id">Counter identifier</param>
+        /// <returns>Operation result</returns>
         // DELETE api/contadores/5
         public IHttpActionResult Delete(int id)
         {

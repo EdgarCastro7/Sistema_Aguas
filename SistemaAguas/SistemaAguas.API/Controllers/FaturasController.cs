@@ -17,6 +17,10 @@ namespace SistemaAguas.API.Controllers
     .ConnectionStrings["SistemaAguasConnectionString"]
     .ConnectionString);
 
+        /// <summary>
+        /// Gets all invoices
+        /// </summary>
+        /// <returns>List of invoices</returns>
         // GET api/faturas
         public List<Fatura> Get()
         {
@@ -25,6 +29,11 @@ namespace SistemaAguas.API.Controllers
             return list.ToList();
         }
 
+        /// <summary>
+        /// Gets an invoice by its identifier
+        /// </summary>
+        /// <param name="id">Invoice identifier</param>
+        /// <returns>The requested invoice</returns>
         // GET api/faturas/5
         public IHttpActionResult Get(int id)
         {
@@ -37,7 +46,12 @@ namespace SistemaAguas.API.Controllers
 
             return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK));
         }
-        
+
+        /// <summary>
+        /// Creates a new invoice
+        /// </summary>
+        /// <param name="fatura">Invoice data</param>
+        /// <returns>Operation result</returns>
         // POST api/faturas
         public IHttpActionResult Post([FromBody] Fatura fatura)
         {
@@ -112,6 +126,12 @@ namespace SistemaAguas.API.Controllers
             return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK));
         }
 
+        /// <summary>
+        /// Updates an existing invoice
+        /// </summary>
+        /// <param name="id">Invoice identifier</param>
+        /// <param name="faturaAtualizada">Updated invoice data</param>
+        /// <returns>Operation result.</returns>
         // PUT api/faturas/5
         public IHttpActionResult Put(int id, [FromBody] Fatura faturaAtualizada)
         {
@@ -137,6 +157,11 @@ namespace SistemaAguas.API.Controllers
             return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK));
         }
 
+        /// <summary>
+        /// Deletes an invoice
+        /// </summary>
+        /// <param name="id">Invoice identifier</param>
+        /// <returns>Operation result</returns>
         // DELETE api/faturas/5
         public IHttpActionResult Delete(int id)
         {

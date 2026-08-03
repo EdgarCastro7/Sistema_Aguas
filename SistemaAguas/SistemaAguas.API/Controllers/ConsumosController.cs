@@ -15,6 +15,10 @@ namespace SistemaAguas.API.Controllers
     .ConnectionStrings["SistemaAguasConnectionString"]
     .ConnectionString);
 
+        /// <summary>
+        /// Gets all consumptions
+        /// </summary>
+        /// <returns>List of consumptions</returns>
         // GET api/consumos
         public List<Consumo> Get()
         {
@@ -23,6 +27,11 @@ namespace SistemaAguas.API.Controllers
             return list.ToList();
         }
 
+        /// <summary>
+        /// Gets a consumption by its identifier
+        /// </summary>
+        /// <param name="id">Consumption identifier</param>
+        /// <returns>The requested consumption</returns>
         // GET api/consumos/5
         public IHttpActionResult Get(int id)
         {
@@ -36,6 +45,11 @@ namespace SistemaAguas.API.Controllers
             return ResponseMessage(Request.CreateResponse(HttpStatusCode.NotFound));
         }
 
+        /// <summary>
+        /// Gets all consumptions associated with a counter
+        /// </summary>
+        /// <param name="contadorId">Counter identifier</param>
+        /// <returns>List of consumptions for the specified counter</returns>
         [HttpGet]
         [Route("api/consumos/contador/{contadorId}")]
         public IHttpActionResult GetPorContador(int contadorId)
@@ -45,6 +59,11 @@ namespace SistemaAguas.API.Controllers
             return Ok(consumos);
         }
 
+        /// <summary>
+        /// Creates a new consumption
+        /// </summary>
+        /// <param name="consumo">Consumption data</param>
+        /// <returns>Operation result</returns>
         // POST api/consumos
         public IHttpActionResult Post([FromBody] Consumo consumo)
         {
@@ -119,6 +138,12 @@ namespace SistemaAguas.API.Controllers
 
         }
 
+        /// <summary>
+        /// Updates an existing consumption
+        /// </summary>
+        /// <param name="id">Consumption identifier</param>
+        /// <param name="consumoAtualizado">Updated consumption data</param>
+        /// <returns>Operation result.</returns>
         // PUT api/consumos/5
         public IHttpActionResult Put(int id, [FromBody] Consumo consumoAtualizado)
         {
@@ -173,6 +198,11 @@ namespace SistemaAguas.API.Controllers
             return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK));
         }
 
+        /// <summary>
+        /// Deletes a consumption
+        /// </summary>
+        /// <param name="id">Consumption identifier</param>
+        /// <returns>Operation result</returns>
         // DELETE api/consumos/5
         public IHttpActionResult Delete(int id)
         {

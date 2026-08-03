@@ -94,6 +94,12 @@ namespace SistemaAguas.WPF
 
         private async void btnAdicionar_Click(object sender, RoutedEventArgs e)
         {
+            if(cbClientes.SelectedItem == null)
+            {
+                MessageBox.Show("Selecione um cliente");
+                return;
+            }
+
             Cliente cliente = (Cliente)cbClientes.SelectedItem;
             Contador contador = new Contador();
             {

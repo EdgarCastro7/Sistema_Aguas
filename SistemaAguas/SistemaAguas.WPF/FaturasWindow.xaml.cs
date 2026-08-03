@@ -139,7 +139,7 @@ namespace SistemaAguas.WPF
             {
                 Cliente cliente = await response.Content.ReadAsAsync<Cliente>();
 
-                cbClientes.SelectedValue = cliente.Nome;
+                cbClientes.SelectedValue = cliente.Id;
             }
 
             await CarregarConsumosDoContador(contador.Id);
