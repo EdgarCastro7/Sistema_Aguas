@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Gestão de Faturas"
         Height="700"
-        Width="1000">
+        Width="1147">
 
     <Grid Margin="10">
 
@@ -67,7 +67,7 @@
                         Grid.Column="7"
                         Content="Pesquisar"
                         Width="90"
-                        Margin="5"/>
+                        Margin="5" Click="btnPesquisar_Click"/>
             </Grid>
 
         </GroupBox>
@@ -85,7 +85,7 @@
                                     Binding="{Binding Id}"/>
 
                 <DataGridTextColumn Header="Data"
-                                    Binding="{Binding DataFatura}"/>
+                                    Binding="{Binding DataFatura, StringFormat=dd/MM/yyyy}"/>
 
                 <DataGridTextColumn Header="Cliente"
                                     Binding="{Binding ClienteId}"/>

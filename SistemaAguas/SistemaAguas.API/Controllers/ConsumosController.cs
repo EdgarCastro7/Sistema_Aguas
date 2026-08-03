@@ -213,6 +213,11 @@ namespace SistemaAguas.API.Controllers
                 return ResponseMessage(Request.CreateResponse(HttpStatusCode.NotFound, "Consumo não encontrado"));
             }
 
+            if (db.Faturas.Any(f => f.ConsumoId == consumo.Id))
+            {
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.BadRequest,"Não é possível eliminar este consumo porque a sua fatura já foi paga"));
+            }
+
             db.Consumos.DeleteOnSubmit(consumo);
 
             try

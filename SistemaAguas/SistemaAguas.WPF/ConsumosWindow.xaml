@@ -17,7 +17,8 @@
                   Grid.Row="0"
                   AutoGenerateColumns="False"
                   SelectionChanged="dgConsumos_SelectionChanged"
-                  Margin="0,0,0,10">
+                  Margin="0,0,0,10"
+                  IsReadOnly="True">
 
             <DataGrid.Columns>
 
@@ -26,7 +27,7 @@
                                     Width="60"/>
 
                 <DataGridTextColumn Header="Data"
-                                    Binding="{Binding DataLeitura}"
+                                    Binding="{Binding DataLeitura, StringFormat=dd/MM/yyyy}"
                                     Width="150"/>
 
                 <DataGridTextColumn Header="Leitura Atual"

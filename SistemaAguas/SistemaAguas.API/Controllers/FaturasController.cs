@@ -48,6 +48,43 @@ namespace SistemaAguas.API.Controllers
         }
 
         /// <summary>
+        /// Searches invoices by client and date range
+        /// </summary>
+        /// <param name="clienteId">Client identifier</param>
+        /// <param name="dataInicio">Start date</param>
+        /// <param name="dataFim">End date</param>
+        /// <returns>Filtered list of invoices</returns>
+        // GET api/faturas/pesquisar
+        [HttpGet]
+        [Route("api/faturas/pesquisar")]
+        public IHttpActionResult Pesquisar(int? clienteId = null, DateTime? dataInicio = null, DateTime? dataFim = null, bool? pago = null)
+        {
+            List<Fatura> faturas = db.Faturas.OrderBy(f => f.Id).ToList();
+
+            if (clienteId.HasValue)
+            {
+                faturas = faturas.Where(f => f.ClienteId == clienteId.Value).ToList();
+            }
+
+            if (dataInicio.HasValue)
+            {
+                faturas = faturas.Where(f => f.DataFatura >= dataInicio.Value).ToList();
+            }
+
+            if (dataFim.HasValue)
+            {
+                faturas = faturas.Where(f => f.DataFatura <= dataFim.Value).ToList();
+            }
+
+            if (pago.HasValue)
+            {
+                faturas = faturas.Where(f => f.Pago == pago.Value).ToList();
+            }
+
+            return Ok(faturas);
+        }
+
+        /// <summary>
         /// Creates a new invoice
         /// </summary>
         /// <param name="fatura">Invoice data</param>

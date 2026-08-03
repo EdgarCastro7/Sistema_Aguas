@@ -32,10 +32,17 @@ namespace SistemaAguas.WPF
 
             client.BaseAddress = new Uri("https://localhost:44327/");
 
-            CarregarFaturas();
-            CarregarClientes();
-            CarregarContadores();
-            CarregarConsumos();
+            _ = Inicializar();
+        }
+
+        private async Task Inicializar()
+        {
+            await CarregarClientes();
+            await CarregarContadores();
+            await CarregarConsumos();
+            await CarregarFaturas();
+
+            cbEstadoPagamento.SelectedIndex = 0;
         }
 
         private async Task CarregarConsumos()
@@ -81,6 +88,12 @@ namespace SistemaAguas.WPF
                 List<Cliente> clientes = await response.Content.ReadAsAsync<List<Cliente>>();
 
                 cbClientes.ItemsSource = clientes;
+                cbClientes.DisplayMemberPath = "Nome";
+                cbClientes.SelectedValuePath = "Id";
+
+                cbPesquisaCliente.ItemsSource = clientes;
+                cbPesquisaCliente.DisplayMemberPath = "Nome";
+                cbPesquisaCliente.SelectedValuePath = "Id";
             }
             else
             {
@@ -122,6 +135,11 @@ namespace SistemaAguas.WPF
             chkAnulada.IsChecked = false;
 
             dgFaturas.SelectedItem = null;
+
+            cbPesquisaCliente.SelectedItem = null;
+            dpInicio.SelectedDate = null;
+            dpFim.SelectedDate = null;
+            cbEstadoPagamento.SelectedIndex = 0;
         }
 
         private async void dgFaturas_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -180,9 +198,10 @@ namespace SistemaAguas.WPF
             }
         }
 
-        private void btnLimpar_Click(object sender, RoutedEventArgs e)
+        private async void btnLimpar_Click(object sender, RoutedEventArgs e)
         {
             LimparCampos();
+            await CarregarFaturas();
         }
 
         private async void btnAdicionar_Click(object sender, RoutedEventArgs e)
@@ -358,6 +377,50 @@ namespace SistemaAguas.WPF
                 tarifa = 1.6;
             }
             txtValorTotal.Text = (consumo.ValorConsumido * tarifa).ToString("0.00");
+        }
+
+        private async void btnPesquisar_Click(object sender, RoutedEventArgs e)
+        {
+            await PesquisarFaturas();
+        }
+
+        private async Task PesquisarFaturas()
+        {
+            string cliente = "";
+            string dataInicio = "";
+            string dataFim = "";
+            string pago = "";
+
+            if (cbPesquisaCliente.SelectedValue != null)
+            {
+                cliente = "clienteId=" + cbPesquisaCliente.SelectedValue + "&";
+            }
+
+            if (dpInicio.SelectedDate != null)
+            {
+                dataInicio = "dataInicio=" + dpInicio.SelectedDate.Value.ToString("yyyy-MM-dd") + "&";
+            }
+
+            if (dpFim.SelectedDate != null)
+            {
+                dataFim = "dataFim=" + dpFim.SelectedDate.Value.ToString("yyyy-MM-dd") + "&";
+            }
+
+            if (cbEstadoPagamento.SelectedIndex == 1)
+            {
+                pago = "pago=true&";
+            }
+            else if (cbEstadoPagamento.SelectedIndex == 2)
+            {
+                pago = "pago=false&";
+            }
+
+            HttpResponseMessage response = await client.GetAsync($"api/faturas/pesquisar?{cliente}{dataInicio}{dataFim}{pago}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                dgFaturas.ItemsSource = await response.Content.ReadAsAsync<List<Fatura>>();
+            }
         }
     }
 }
